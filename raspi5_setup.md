@@ -16,6 +16,7 @@
 * Create a temporary OS installation on a USB stick for preparing the SSD
 * Update the bootloader, https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#update-the-bootloader
 * Enable NVMe SSD boot, https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#nvme-ssd-boot
+  * Not working due to some incompatibility; using USB enclosure instead
 * Edit the bootloader configuration, https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#raspberry-pi-bootloader-configuration
 * Install Raspberry Pi OS Lite (bookworm) on the SSD
 
@@ -28,16 +29,32 @@
 * Research Eclipse Mosquitto, https://hub.docker.com/_/eclipse-mosquitto
 * Research Home Assistant
 
+# Influxdb
+
+* https://docs.influxdata.com/influxdb/v2/install/?t=Docker
+* https://docs.influxdata.com/influxdb/v2/install/use-docker-compose/
+* https://docs.influxdata.com/influxdb/v2/get-started/setup/
+* https://docs.influxdata.com/influxdb/v2/reference/cli/influx/setup/
+
 # Interesting raspi commands
 
 vcgencmd measure_temp
 vcgencmd bootloader_version
+vcgencmd bootloader_config
+vcgencmd otp_dump
+
+cat /proc/cpuinfo
+cat /sys/firmware/devicetree/base/model
+
 apt install rpi-eeprom
+
 sudo raspi-config
-sudo rpi-eeprom-update
-sudo rpi-eeprom-update -a
+
 rpi-eeprom-config
 sudo -E rpi-eeprom-config --edit
+sudo rpi-eeprom-update
+sudo rpi-eeprom-update -a
 sudo reboot
+
 sudo systemctl unmask rpi-eeprom-update
 nano /etc/default/rpi-eeprom-update
